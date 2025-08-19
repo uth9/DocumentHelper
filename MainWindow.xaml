@@ -5,33 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:properties="clr-namespace:DocumentHelper.Properties"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="DocumentHelper" Height="450" Width="800">
-    <hc:SimplePanel>
-        <hc:Row hc:Gutter="5" hc:Margin="20,20,5,5" HorizontalAlignment="Left" Width="550">
-            <hc:Col Span="3">
-                <hc:SimpleText hc:Text="姓名：" hc:TextAlignment="Center" hc:VerticalAlignment="Center"/>
-            </hc:Col>
-            <hc:Col Span="4">
-                <hc:TextBox/>
-            </hc:Col>
-            <hc:Col Span="4">
-                <hc:SimpleText hc:Text="发展编号：" hc:TextAlignment="Center" hc:VerticalAlignment="Center"/>
-            </hc:Col>
-            <hc:Col Span="7">
-                <hc:TextBox/>
-            </hc:Col>
-            <hc:Col Span="3">
-                <hc:SimpleText hc:Text="民族：" hc:TextAlignment="Center" hc:VerticalAlignment="Center"/>
-            </hc:Col>
-            <hc:Col Span="3">
-                <hc:ComboBox/>
-            </hc:Col>
-        </hc:Row>
-        <hc:ScrollViewer HorizontalAlignment="Right" Margin="0,20,20,5" Width="200">
-            <hc:ButtonGroup>
-                
-            </hc:ButtonGroup>
-        </hc:ScrollViewer>
-    </hc:SimplePanel>
+        Title="DocumentHelper" Height="470" Width="800">
+    <Window.Resources>
+        <properties:Settings x:Key="AppSettings"/>
+        <Geometry x:Key="AddRowIcon">
+            M512 170.666667a128 128 0 1 0 0 256 128 128 0 0 0 0-256z m-213.333333 128c0-117.824 95.509333-213.333333 213.333333-213.333334s213.333333 95.509333 213.333333 213.333334-95.509333 213.333333-213.333333 213.333333-213.333333-95.509333-213.333333-213.333333zM656.256 538.410667C611.413333 521.344 562.816 512 512 512 288.149333 512 106.666667 693.482667 106.666667 917.333333h85.333333c0-176.725333 143.274667-320 320-320 26.24 0 51.776 3.157333 76.202667 9.130667l68.053333-68.053333z M576 704h341.333333v85.333333H576v-85.333333z M789.333333 576v341.333333h-85.333333V576h85.333333z
+        </Geometry>
+        <Geometry x:Key="DeleteRowIcon">
+            F1 M128,128 A42.666667,42.666667 0 0 1 170.666667,85.333333 L810.666667,85.333333 A42.666667,42.666667 0 0 1 853.333333,128 L853.333333,554.666667 L768,554.666667 L768,170.666667 L213.333333,170.666667 L213.333333,853.333333 L453.76,853.333333 L453.76,938.666667 L170.666667,938.666667 A42.666667,42.666667 0 0 1 128,896 L128,128 Z
+            M785.664,789.333333 L876.181333,698.816 L815.850667,638.485333 L725.333333,729.002667 L634.837333,638.485333 L574.485333,698.837333 L664.981333,789.333333 L574.485333,879.829333 L634.837333,940.181333 L725.333333,849.664 L815.850667,940.181333 L876.181333,879.829333 L785.664,789.333333 Z
+            M682.666667,384 L298.666667,384 L298.666667,298.666667 L682.666667,298.666667 L682.666667,384 Z
+            M512,554.666667 L298.666667,554.666667 L298.666667,469.333333 L512,469.333333 L512,554.666667 Z
+        </Geometry>
+        <Geometry x:Key="StartServiceIcon">
+            M721.365,399.339 L502.357,667.008 a42.667,42.667 0 0,1 -63.189,3.157 L302.336,533.333 L362.667,473.003 l103.509,103.488 l189.163,-231.189 l66.027,54.037 z M512,170.667 C323.477,170.667 170.667,323.477 170.667,512 S323.477,853.333 512,853.333 853.333,700.523 853.333,512 S700.523,170.667 512,170.667 z M85.333,512 C85.333,276.352 276.352,85.333 512,85.333 s426.667,191.019 426.667,426.667 -191.019,426.667 -426.667,426.667 S85.333,747.648 85.333,512 z
+        </Geometry>
+        <Geometry x:Key="StopServiceIcon">
+            F1M512,170.666667C323.477333,170.666667 170.666667,323.477333 170.666667,512 170.666667,700.522667 323.477333,853.333333 512,853.333333 700.522667,853.333333 853.333333,700.522667 853.333333,512 853.333333,323.477333 700.522667,170.666667 512,170.666667zM85.333333,512C85.333333,276.352 276.352,85.333333 512,85.333333 747.648,85.333333 938.666667,276.352 938.666667,512 938.666667,747.648 747.648,938.666667 512,938.666667 276.352,938.666667 85.333333,747.648 85.333333,512zM405.333333,345.002667L678.997333,618.666667 618.666667,679.04 345.002667,405.333333 405.333333,345.002667zM345.002667,618.666667L618.666667,345.002667 678.997333,405.333333 405.333333,678.997333 345.002667,618.666667z
+        </Geometry>
+        <Geometry x:Key="SettingsIcon">
+            F1 M490.666667,69.717333 A42.666667,42.666667 0 0 1 533.333333,69.717333 L884.373333,272.384 A42.666667,42.666667 0 0 1 905.706667,309.333333 L905.706667,714.666667 A42.666667,42.666667 0 0 1 884.373333,751.616 L533.333333,954.282667 A42.666667,42.666667 0 0 1 490.666667,954.282667 L139.626667,751.616 A42.666667,42.666667 0 0 1 118.293333,714.666667 L118.293333,309.333333 A42.666667,42.666667 0 0 1 139.626667,272.384 L490.666667,69.717333 Z
+            M203.648,333.973333 L203.648,690.026667 L512,868.074667 L820.352,690.026667 L820.352,333.973333 L512,155.925333 L203.648,333.973333 Z
+            M512,469.333333 A42.666667,42.666667 0 1 0 512,554.666667 A42.666667,42.666667 0 1 0 512,469.333333 Z
+            M384,512 A128,128 0 1 1 640,512 A128,128 0 1 1 384,512 Z
+        </Geometry>
+    </Window.Resources>
+    <Grid>
+        <!-- 背景图片 -->
+        <Image Source="C:\Users\HUAWEI\source\repos\DocumentHelper\background.png" Stretch="UniformToFill" Opacity="1"/>
+
+        <!-- 磨砂玻璃层 -->
+        <Border Background="#B3FFFFFF" CornerRadius="8" Margin="0">
+            <Border.Effect>
+                <BlurEffect Radius="15" KernelType="Gaussian"/>
+            </Border.Effect>
+        </Border>
+
+        <hc:SimpleStackPanel Margin="5">
+            <!-- 标题栏 - 使用Border添加白色半透明背景 -->
+            <Border Background="#80F0F0F0" CornerRadius="4" Margin="5">
+                <hc:SimpleStackPanel VerticalAlignment="Top" Height="60" 
+                                     Orientation="Horizontal" 
+                                     Background="Transparent">
+                    <Button Content="添加成员" Height="45" FontSize="14" Margin="5,0,5,0" hc:IconElement.Geometry="{StaticResource AddRowIcon}" hc:IconElement.Height="25"/>
+                    <Button Content="删除成员" Height="45" FontSize="14" Margin="5,0,5,0" hc:IconElement.Geometry="{StaticResource DeleteRowIcon}" hc:IconElement.Height="25"/>
+                    <hc:Divider Orientation="Vertical" Margin="10,15,10,15" LineStrokeThickness="2" Height="Auto" LineStroke="#80000000"/>
+                    <Button Content="启动服务" Height="45" FontSize="14" Margin="5,0,5,0" hc:IconElement.Geometry="{StaticResource StartServiceIcon}" hc:IconElement.Height="25"/>
+                    <Button Content="停止服务" Height="45" FontSize="14" Margin="5,0,5,0" hc:IconElement.Geometry="{StaticResource StopServiceIcon}" hc:IconElement.Height="25"/>
+                    <hc:Divider Orientation="Vertical" Margin="10,15,10,15" LineStrokeThickness="2" Height="Auto" LineStroke="#80000000"/>
+                    <Button Content="设置" Height="45" FontSize="14" Margin="5,0,5,0" hc:IconElement.Geometry="{StaticResource SettingsIcon}" hc:IconElement.Height="25"/>
+                </hc:SimpleStackPanel>
+            </Border>
+
+            <hc:Divider Height="5"
+                        Margin="5"
+                        LineStrokeThickness="2"
+                        LineStroke="{Binding Source={StaticResource AppSettings}, Path=FifthThemeColor}"/>
+            <!-- 优化后的DataGrid -->
+            <DataGrid AutoGenerateColumns="False" Margin="5" 
+                      ColumnHeaderHeight="30" RowHeight="30" 
+                      VerticalAlignment="Stretch" 
+                      VerticalContentAlignment="Stretch"
+                      Height="Auto"
+                      Background="#B3FFFFFF"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      CanUserAddRows="False"
+                      HeadersVisibility="Column"
+                      Opacity="1">
+                <DataGrid.DataContext>
+                    <local:Student/>
+                </DataGrid.DataContext>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding address}" Width="80"/>
+                    <DataGridTextColumn Header="Document Name" Binding="{Binding studentName}" Width="*"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding volunteerState}" Width="120"/>
+                    <DataGridTextColumn Header="Size" Binding="{Binding studentNation}" Width="100"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding regDate}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </hc:SimpleStackPanel>
+    </Grid>
 </hc:Window>

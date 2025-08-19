@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DocumentHelper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FirstThemeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#dce4e5</Value>
+    </Setting>
+    <Setting Name="SecondThemeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#5ca4b0</Value>
+    </Setting>
+    <Setting Name="ThirdThemeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#8ccccc</Value>
+    </Setting>
+    <Setting Name="FourthThemeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#354a53</Value>
+    </Setting>
+    <Setting Name="FifthThemeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#7d8f95</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
