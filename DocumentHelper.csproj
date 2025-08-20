@@ -10,10 +10,49 @@
 
   <ItemGroup>
     <None Remove="background" />
+    <None Remove="background.png" />
+    <None Remove="Icon.png" />
+    <None Remove="static\AddRow.png" />
+    <None Remove="static\DeleteRow.png" />
+    <None Remove="static\LoadFrom.png" />
+    <None Remove="static\SaveTo.png" />
+    <None Remove="static\Settings.png" />
+    <None Remove="static\StartService.png" />
+    <None Remove="static\StopService.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="HandyControl" Version="3.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\AddRow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\DeleteRow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\LoadFrom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\SaveTo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\Settings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\StartService.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="static\StopService.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

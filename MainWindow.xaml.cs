@@ -23,5 +23,9 @@ namespace DocumentHelper
 
         }
 
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
