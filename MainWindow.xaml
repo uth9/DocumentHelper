@@ -8,18 +8,25 @@
         xmlns:properties="clr-namespace:DocumentHelper.Properties"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="文档辅助器" Height="590" Width="1056" Icon="/Icon.png"
+        Title="文档辅助器" Height="600" Width="1056" Icon="/Icon.png"
         NonClientAreaBackground="#408CCCCC">
     <Window.Resources>
         <properties:Settings x:Key="AppSettings"/>
         <Style x:Key="DataGridComboBoxCenterColumnStyle" TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="DataGridDefaultCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="False">
+                    <Setter Property="Background" Value="#00000000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     
     <Grid>
         <!-- 背景图片 -->
-        <Image Source="C:\Users\HUAWEI\source\repos\DocumentHelper\background.png" Stretch="UniformToFill" Opacity="1" Margin="0"/>
+        <Image Source="/background.png" Stretch="UniformToFill" Opacity="1" Margin="0"/>
 
         <!-- 磨砂玻璃层 -->
         <Border Background="#B3FFFFFF" CornerRadius="8" Margin="0">
@@ -34,7 +41,7 @@
                 <hc:SimpleStackPanel VerticalAlignment="Top" Height="60" 
                                      Orientation="Horizontal" 
                                      Background="Transparent">
-                    <Button Height="45" FontSize="14" Margin="5,0,5,0" >
+                    <Button x:Name="AddNewRowButton" Height="45" FontSize="14" Margin="5,0,5,0" Click="AddNewRowButton_Click" >
                         <hc:SimpleStackPanel Orientation="Horizontal">
                             <Image Source="/static/AddRow.png" Height="30"/>
                             <TextBlock Text=" 新建条目" VerticalAlignment="Center"/>
@@ -85,35 +92,49 @@
             <hc:Divider Height="5"
                         Margin="5"
                         LineStrokeThickness="2"
-                        LineStroke="{Binding Source={StaticResource AppSettings}, Path=FifthThemeColor}"/>
+                        LineStroke="#FF7D8F95"/>
             <!-- 优化后的DataGrid -->
             <DataGrid AutoGenerateColumns="False" Margin="5" 
-                      ColumnHeaderHeight="30" RowHeight="30" 
-                      VerticalAlignment="Stretch" 
-                      VerticalContentAlignment="Stretch"
-                      Height="Auto"
-                      Background="#B3FFFFFF"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      CanUserAddRows="False"
-                      HeadersVisibility="Column"
-                      Opacity="1" HorizontalContentAlignment="Center" 
-                      CanUserReorderColumns="True" MouseDoubleClick="DataGrid_MouseDoubleClick" 
-                      IsReadOnly="True">
+          ColumnHeaderHeight="30" RowHeight="30" 
+          VerticalAlignment="Stretch" 
+          VerticalContentAlignment="Stretch"
+          Height="Auto"
+          Background="#B3FFFFFF"
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          CanUserAddRows="False"
+          HeadersVisibility="Column"
+          Opacity="1" HorizontalContentAlignment="Center" 
+          CanUserReorderColumns="True" MouseDoubleClick="DataGrid_MouseDoubleClick" 
+          IsReadOnly="True" >
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRowStyle}">
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Background" Value="#6066CCFF"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.DataContext>
                     <local:Student/>
                 </DataGrid.DataContext>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="姓名" Binding="{Binding studentName}" Width="80"/>
-                    <DataGridTextColumn Header="民族" Binding="{Binding studentNation}" Width="60"/>
-                    <DataGridTextColumn Header="注册时间" Binding="{Binding regDate}" Width="80"/>
-                    <DataGridTextColumn Header="身份证号" Binding="{Binding personalId}" Width="160"/>
-                    <DataGridTextColumn Header="住址" Binding="{Binding address}" Width="*"/>
-                    <DataGridTextColumn Header="联系方式" Binding="{Binding telephoneNumber}" Width="120"/>
-                    <DataGridCheckBoxColumn Header="是否注册志愿者" Binding="{Binding volunteerState}" Width="110" CellStyle="{Binding Source={StaticResource DataGridComboBoxCenterColumnStyle}}"/>
+                    <DataGridTextColumn Header="姓名" Binding="{Binding StudentName}" Width="80"/>
+                    <DataGridTextColumn Header="民族" Binding="{Binding StudentNation}" Width="60"/>
+                    <DataGridTextColumn Header="注册时间" Binding="{Binding RegDate}" Width="80"/>
+                    <DataGridTextColumn Header="身份证号" Binding="{Binding Pin}" Width="160"/>
+                    <DataGridTextColumn Header="住址" Binding="{Binding Address}" Width="*"/>
+                    <DataGridTextColumn Header="联系方式" Binding="{Binding Tel}" Width="120"/>
+                    <DataGridCheckBoxColumn Header="是否注册志愿者" Binding="{Binding VolunteerState}" Width="110" CellStyle="{Binding Source={StaticResource DataGridComboBoxCenterColumnStyle}}"/>
                 </DataGrid.Columns>
                 <DataGrid.Items>
-                    <local:Student studentName="name" personalId="360802200809230519" address="江西省吉安市吉州区白鹭洲中学高二三班" telephoneNumber="18370645475"/>
-                    <local:Student studentName="name" personalId="360802200809230519" address="江西省吉安市吉州区白鹭洲中学高二三班" telephoneNumber="18370645475"/>
+                    <local:Student StudentName="Name" StudentNation="汉族" RegDate="2008/11" Pin="00000000000000" Address="Address" Tel="12312341234" VolunteerState="False"/>
                 </DataGrid.Items>
             </DataGrid>
         </hc:SimpleStackPanel>

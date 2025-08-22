@@ -10,262 +10,110 @@ namespace DocumentHelper
 
     public class Student : INotifyPropertyChanged
     {
-        public Student() { }
-        public Student(bool regToDataList)
+        private string _StudentName = "";
+        public string StudentName
         {
-            if (regToDataList)
-            {
-                StudentDatas.Add(this);
-                return;
-            }
-        }
-
-        public static List<Student> StudentDatas = [];
-
-        /// 设置编号
-        private int _number = StudentDatas.Count;
-        public int number
-        {
-            get => this._number;
+            get => this._StudentName;
             set
             {
-                this._number = value;
+                this._StudentName = value;
+                this.onPropertyChanged(nameof(this.StudentName));
             }
         }
-
-        /// 初始化日期
-        private static string _todayYear = DateTime.Today.ToString("yyyy");
-        [XmlIgnore]
-        public string todayYear
+        private string _StudentNation = "汉族";
+        public string StudentNation
         {
-            get
-            {
-                if (_todayYear is null || _todayYear == "0000")
-                {
-                    _todayYear = "2025";
-                }
-                return _todayYear;
-            }
+            get => this._StudentNation;
             set
             {
-                _todayYear = value;
+                this._StudentNation = value;
+                this.onPropertyChanged(nameof(this.StudentNation));
             }
         }
-        private static string _todayMonth = DateTime.Today.ToString("MM");
-        [XmlIgnore]
-        public string todayMonth
+        private string _Pin = "";
+        public string Pin
         {
-            get
-            {
-                if (_todayMonth is null || _todayMonth == "00")
-                {
-                    _todayMonth = "01";
-                }
-                return _todayMonth;
-            }
+            get => _Pin;
             set
             {
-                _todayMonth = value;
+                this._Pin = value;
+                this.onPropertyChanged(nameof(this.Pin));
             }
         }
-        private static string[] _regYearList = ["2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044"];
-        [XmlIgnore]
-        public string[] regYearList
+        private string _ReconfirmedPin = "";
+        public string ReconfirmedPin
         {
-            get
-            {
-                if (todayYear != _regYearList[0])
-                {
-                    int year = int.Parse(todayYear);
-                    for(int i = 0; i < 20; i++, year++)
-                    {
-                       _regYearList[i] = Convert.ToString(year);
-                    }
-                }
-                return _regYearList;
-            }
-            set { }
-        }
-        private static string[] _regMonthList = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-        [XmlIgnore]
-        public string[] regMonthList
-        {
-            get
-            {
-                return _regMonthList;
-            }
-            set { }
-        }
-
-
-        private static List<string> _nationList = new List<string> { "汉族", 
-            "壮族", 
-            "回族", 
-            "满族", 
-            "维吾尔族",
-            "苗族",
-            "彝族",
-            "土家族",
-            "藏族",
-            "蒙古族",
-            "侗族",
-            "布依族",
-            "瑶族",
-            "白族",
-            "朝鲜族",
-            "哈尼族",
-            "黎族",
-            "哈萨克族",
-            "傣族", 
-            "畲族", 
-            "傈僳族",
-            "东乡族",
-            "仡佬族",
-            "拉祜族",
-            "水族", 
-            "佤族",
-            "纳西族",
-            "羌族",
-            "土族",
-            "仫佬族",
-            "锡伯族",
-            "柯尔克孜族",
-            "景颇族",
-            "达斡尔族",
-            "撒拉族",
-            "布朗族",
-            "毛南族",
-            "塔吉克族",
-            "普米族",
-            "阿昌族",
-            "怒族",
-            "鄂温克族",
-            "京族",
-            "基诺族",
-            "德昂族",
-            "保安族",
-            "俄罗斯族",
-            "裕固族",
-            "乌孜别克族",
-            "门巴族",
-            "鄂伦春族",
-            "独龙族",
-            "赫哲族",
-            "高山族",
-            "珞巴族",
-            "塔塔尔族" };
-        [XmlIgnore]
-        public List<string> nationList
-        {
-            get => _nationList;
-            set { }
-        }
-
-
-        private string _studentName = "";
-        public string studentName
-        {
-            get => this._studentName;
+            get => this._ReconfirmedPin;
             set
             {
-                this._studentName = value;
-                this.onPropertyChanged(nameof(this.studentName));
+                this._ReconfirmedPin = value;
+                this.onPropertyChanged(nameof(this.ReconfirmedPin));
             }
         }
-        private string _studentNation = "汉族";
-        public string studentNation
+        private string _MemberId = "";
+        public string MemberId
         {
-            get => this._studentNation;
+            get => this._MemberId;
             set
             {
-                this._studentNation = value;
-                this.onPropertyChanged(nameof(this.studentNation));
+                this._MemberId = value;
+                this.onPropertyChanged(nameof(this.MemberId));
             }
         }
-        private string _personalId = "";
-        public string personalId
+        private string[] _RegDate = ["2025", "01"];
+        public string RegDate
         {
-            get => _personalId;
+            get => string.Concat(this._RegDate[0], "/", this._RegDate[1]);
+            set { _RegDate = value.Split('/'); }
+        }
+        public string RegYear
+        {
+            get => this._RegDate[0];
             set
             {
-                this._personalId = value;
-                this.onPropertyChanged(nameof(this.personalId));
+                this._RegDate[0] = value;
+                this.onPropertyChanged(nameof(this.RegYear));
+                this.onPropertyChanged(nameof(this.RegDate));
             }
         }
-        private string _reConfirmedId = "";
-        public string reConfirmedId
+        public string RegMonth
         {
-            get => this._reConfirmedId;
+            get => this._RegDate[1];
             set
             {
-                this._reConfirmedId = value;
-                this.onPropertyChanged(nameof(this.reConfirmedId));
+                this._RegDate[1] = value;
+                this.onPropertyChanged(nameof(this.RegMonth));
+                this.onPropertyChanged(nameof(this.RegDate));
             }
         }
-        private string _developedNumber = "";
-        public string developedNumber
+        private string _Tel = "";
+        public string Tel
         {
-            get => this._developedNumber;
+            get => this._Tel;
             set
             {
-                this._developedNumber = value;
-                this.onPropertyChanged(nameof(this.developedNumber));
+                this._Tel = value;
+                this.onPropertyChanged(nameof(this.Tel));
             }
         }
-        private string[] _regDate = ["2025", "01"];
-        public string regDate
+        private string _Address = "";
+        public string Address
         {
-            get => string.Concat(this._regDate[0], "/", this._regDate[1]);
-            set { _regDate = value.Split('/'); }
-        }
-        public string regYear
-        {
-            get => this._regDate[0];
+            get => this._Address;
             set
             {
-                this._regDate[0] = value;
-                this.onPropertyChanged(nameof(this.regYear));
-                this.onPropertyChanged(nameof(this.regDate));
+                this._Address = value;
+                this.onPropertyChanged(nameof(this.Address));
             }
         }
-        public string regMonth
+        private bool _VolunteerState = true;
+        public bool VolunteerState
         {
-            get => this._regDate[1];
+            get => this._VolunteerState;
             set
             {
-                this._regDate[1] = value;
-                this.onPropertyChanged(nameof(this.regMonth));
-                this.onPropertyChanged(nameof(this.regDate));
-            }
-        }
-        private string _telephoneNumber = "";
-        public string telephoneNumber
-        {
-            get => this._telephoneNumber;
-            set
-            {
-                this._telephoneNumber = value;
-                this.onPropertyChanged(nameof(this.telephoneNumber));
-            }
-        }
-        private string _address = "";
-        public string address
-        {
-            get => this._address;
-            set
-            {
-                this._address = value;
-                this.onPropertyChanged(nameof(this.address));
-            }
-        }
-        private bool _volunteerState = true;
-        public bool volunteerState
-        {
-            get => this._volunteerState;
-            set
-            {
-                this._volunteerState = value;
-                this.onPropertyChanged(nameof(volunteerState));
+                this._VolunteerState = value;
+                this.onPropertyChanged(nameof(VolunteerState));
             }
         }
         
