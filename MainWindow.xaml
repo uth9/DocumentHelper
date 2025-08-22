@@ -37,7 +37,7 @@
 
         <hc:SimpleStackPanel Margin="5">
             <!-- 标题栏 - 使用Border添加白色半透明背景 -->
-            <Border Background="#80F0F0F0" CornerRadius="4" Margin="5">
+            <Border Background="#80FFFFFF" CornerRadius="4" Margin="5">
                 <hc:SimpleStackPanel VerticalAlignment="Top" Height="60" 
                                      Orientation="Horizontal" 
                                      Background="Transparent">
@@ -94,7 +94,7 @@
                         LineStrokeThickness="2"
                         LineStroke="#FF7D8F95"/>
             <!-- 优化后的DataGrid -->
-            <DataGrid AutoGenerateColumns="False" Margin="5" 
+            <DataGrid AutoGenerateColumns="False" Margin="5" x:Name="StudentDataGrid"
           ColumnHeaderHeight="30" RowHeight="30" 
           VerticalAlignment="Stretch" 
           VerticalContentAlignment="Stretch"

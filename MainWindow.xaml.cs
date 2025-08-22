@@ -89,8 +89,25 @@ namespace DocumentHelper
 
         private void AddNewRowButton_Click(object sender, RoutedEventArgs e)
         {
-            HandyControl.Controls.Window AddNewRowWindow = new AddRowWindow();
-            AddNewRowWindow.ShowDialog();
+            AddRowWindow AddNewRowWindow = new AddRowWindow();
+            AddNewRowWindow.Owner = this;
+            AddNewRowWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            bool ChildDialogResult = (bool)AddNewRowWindow.ShowDialog();
+            if (ChildDialogResult)
+            {
+                StudentDataGrid.Items.Insert(StudentDataGrid.Items.Count, new Student()
+                {
+                    StudentName = AddNewRowWindow.StudentNameBox.Text,
+                    StudentNation = "汉族",//AddNewRowWindow.StudentNameBox.Text,
+                    Pin = AddNewRowWindow.PinBox.Text,
+                    ReconfirmedPin = AddNewRowWindow.ReconfirmedPinBox.Text,
+                    MemberId = AddNewRowWindow.MemberIdBox.Text,
+                    RegDate = "2025/01",//string.Concat(AddNewRowWindow.RegYearBox.Text, "/", AddNewRowWindow.RegMonthBox.Text),
+                    Tel = AddNewRowWindow.TelBox.Text,
+                    Address = AddNewRowWindow.AddressBox.Text,
+                    VolunteerState = (bool)AddNewRowWindow.VolunteerBox.IsChecked,
+                });
+            }
         }
     }
 }
