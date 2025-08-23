@@ -14,6 +14,15 @@
         <properties:Settings x:Key="AppSettings"/>
         <Style x:Key="DataGridComboBoxCenterColumnStyle" TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True"/>
+                        <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="Transparent"/>
+                </MultiTrigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="DataGridDefaultCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle}">
             <Style.Triggers>
@@ -120,6 +129,19 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DataGridCellStyle}">
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="Transparent"/>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="姓名" Binding="{Binding StudentName}" Width="80"/>
                     <DataGridTextColumn Header="民族" Binding="{Binding StudentNation}" Width="60"/>
