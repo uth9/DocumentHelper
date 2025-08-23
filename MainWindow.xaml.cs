@@ -107,7 +107,6 @@ namespace DocumentHelper
                     StudentName = AddNewRowWindow.StudentNameBox.Text,
                     StudentNation = "汉族",//AddNewRowWindow.StudentNameBox.Text,
                     Pin = AddNewRowWindow.PinBox.Text,
-                    ReconfirmedPin = AddNewRowWindow.ReconfirmedPinBox.Text,
                     MemberId = AddNewRowWindow.MemberIdBox.Text,
                     RegDate = "2025/01",//string.Concat(AddNewRowWindow.RegYearBox.Text, "/", AddNewRowWindow.RegMonthBox.Text),
                     Tel = AddNewRowWindow.TelBox.Text,

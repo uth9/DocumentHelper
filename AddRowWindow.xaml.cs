@@ -74,7 +74,6 @@ namespace DocumentHelper
             if (true)
             {
                 if (this.PinBox.Text.Length == 18 &&
-                    this.PinBox.Text == this.ReconfirmedPinBox.Text &&
                     Regex.IsMatch(this.TelBox.Text, @"^1[3-9]\d{9}$") &&
                     Regex.IsMatch(this.PinBox.Text, @"^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X|x)$") 
 
