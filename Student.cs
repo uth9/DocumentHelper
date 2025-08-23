@@ -2,14 +2,14 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Collections.ObjectModel;
 
 namespace DocumentHelper
 {
-    [XmlRoot("Student")]
-    public class StudentList : List<Student> { }
 
     public class Student : INotifyPropertyChanged
     {
+
         private string _StudentName = "";
         public string StudentName
         {

@@ -74,7 +74,8 @@
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5" Width="260">
                         <hc:SimpleStackPanel Width="50"/>
                         <CheckBox x:Name="MailStatu" Content="邮箱：" VerticalAlignment="Center" HorizontalAlignment="Right" Width="60"/>
-                        <hc:TextBox x:Name="MailBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:TextBox x:Name="MailBox" HorizontalAlignment="Stretch" Width="150" IsEnabled="{Binding IsChecked, ElementName=MailStatu}"/>
+
                     </hc:SimpleStackPanel>
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5" Width="260"/>
                 </hc:SimpleStackPanel>

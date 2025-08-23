@@ -22,8 +22,9 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
     </Window.Resources>
-    
+
     <Grid>
         <!-- 背景图片 -->
         <Image Source="/background.png" Stretch="UniformToFill" Opacity="1" Margin="0"/>
@@ -105,25 +106,20 @@
           HeadersVisibility="Column"
           Opacity="1" HorizontalContentAlignment="Center" 
           CanUserReorderColumns="True" MouseDoubleClick="DataGrid_MouseDoubleClick" 
-          IsReadOnly="True" >
+          IsReadOnly="True" ItemsSource="{Binding StudentCollection}" >
                 <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRowStyle}">
+                    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource DataGridRowStyle}">
                         <Style.Triggers>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsSelected" Value="True"/>
                                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Background" Value="#6066CCFF"/>
-                                </MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#6066CCFF"/>
                             </MultiTrigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
-                <DataGrid.DataContext>
-                    <local:Student/>
-                </DataGrid.DataContext>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="姓名" Binding="{Binding StudentName}" Width="80"/>
                     <DataGridTextColumn Header="民族" Binding="{Binding StudentNation}" Width="60"/>
@@ -133,9 +129,6 @@
                     <DataGridTextColumn Header="联系方式" Binding="{Binding Tel}" Width="120"/>
                     <DataGridCheckBoxColumn Header="是否注册志愿者" Binding="{Binding VolunteerState}" Width="110" CellStyle="{Binding Source={StaticResource DataGridComboBoxCenterColumnStyle}}"/>
                 </DataGrid.Columns>
-                <DataGrid.Items>
-                    <local:Student StudentName="Name" StudentNation="汉族" RegDate="2008/11" Pin="00000000000000" Address="Address" Tel="12312341234" VolunteerState="False"/>
-                </DataGrid.Items>
             </DataGrid>
         </hc:SimpleStackPanel>
     </Grid>

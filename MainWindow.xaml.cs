@@ -8,17 +8,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HandyControl;
+using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace DocumentHelper
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
+
 
     public partial class MainWindow : HandyControl.Controls.Window
     {
-        private static List<string> _nationList = new List<string> { "汉族",
+        public ObservableCollection<Student> StudentCollection { get; set; } = new ObservableCollection<Student>();
+
+        public List<string> _NationList = new List<string> { "汉族",
             "壮族",
             "回族",
             "满族",
@@ -78,7 +83,7 @@ namespace DocumentHelper
         public MainWindow()
         {
             InitializeComponent();
-            
+            DataContext = this;
 
         }
 
@@ -92,10 +97,12 @@ namespace DocumentHelper
             AddRowWindow AddNewRowWindow = new AddRowWindow();
             AddNewRowWindow.Owner = this;
             AddNewRowWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            AddNewRowWindow.DataContext = this;
+            AddNewRowWindow.NationBox.ItemsSource = _NationList;
             bool ChildDialogResult = (bool)AddNewRowWindow.ShowDialog();
             if (ChildDialogResult)
             {
-                StudentDataGrid.Items.Insert(StudentDataGrid.Items.Count, new Student()
+                this.StudentCollection.Add( new Student()
                 {
                     StudentName = AddNewRowWindow.StudentNameBox.Text,
                     StudentNation = "汉族",//AddNewRowWindow.StudentNameBox.Text,

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HandyControl;
+using System.Text.RegularExpressions;
 
 namespace DocumentHelper
 {
@@ -55,7 +56,11 @@ namespace DocumentHelper
                         break;
                 }
             }
-            else { e.Cancel = false; }
+            else
+            {
+                DialogResult = true;
+                e.Cancel = false;
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -68,9 +73,21 @@ namespace DocumentHelper
         {
             if (true)
             {
-                //TODO: 添加数据验证
-                DataSaved = true;
-                this.Close();
+                if (this.PinBox.Text.Length == 18 &&
+                    this.PinBox.Text == this.ReconfirmedPinBox.Text &&
+                    Regex.IsMatch(this.TelBox.Text, @"^1[3-9]\d{9}$") &&
+                    Regex.IsMatch(this.PinBox.Text, @"^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X|x)$") 
+
+                    )
+                {
+                    DataSaved = true;
+                    this.Close();
+                }
+                else
+                {
+                    HandyControl.Controls.MessageBox.Show("请输入符合格式的数据", "错误",  MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }
         }
     }
