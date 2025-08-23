@@ -36,6 +36,19 @@ namespace DocumentHelper
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            bool isEmpty = StudentNameBox.Text == "" &&
+                NationBox.Text == "" &&
+                PinBox.Text == "" &&
+                RegYearBox.Text == "" &&
+                RegMonthBox.Text == "" &&
+                MemberIdBox.Text == "" &&
+                TelBox.Text == "" &&
+                AddressBox.Text == "";
+            if (isEmpty)
+            {
+                return;
+
+            }
             if (!DataSaved && !DataCanceled)
             {
                 MessageBoxResult result = HandyControl.Controls.MessageBox.Show("该条目尚未保存，是否在退出前保存？", "警告", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel);
