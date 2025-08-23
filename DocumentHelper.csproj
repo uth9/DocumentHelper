@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="background" />
     <None Remove="background.png" />
+    <None Remove="background4Settings.png" />
     <None Remove="Icon.png" />
     <None Remove="static\AddRow.png" />
     <None Remove="static\DeleteRow.png" />
@@ -27,6 +28,9 @@
 
   <ItemGroup>
     <Resource Include="background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="background4Settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icon.png">

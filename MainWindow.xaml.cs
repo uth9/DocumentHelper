@@ -116,5 +116,13 @@ namespace DocumentHelper
                 });
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CustomSettings SettingWindow = new CustomSettings();
+            SettingWindow.Owner = this;
+            SettingWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            SettingWindow.ShowDialog();
+        }
     }
 }
