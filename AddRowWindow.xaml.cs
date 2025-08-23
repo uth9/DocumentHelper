@@ -71,22 +71,20 @@ namespace DocumentHelper
 
         private void CommitButton_Click(object sender, RoutedEventArgs e)
         {
-            List<string> errorData = [];
-            bool isMatchTelephoneNumber = Regex.IsMatch(TelBox.Text, @"^1[3-9]\d{9}$");
-            if (!isMatchTelephoneNumber) errorData.Add("身份证号");
-            bool isMatchIdNumber = Regex.IsMatch(PinBox.Text, @"^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X|x)$") && PinBox.Text.Length == 18;
-            if (!isMatchIdNumber) errorData.Add("手机号");
             if (true)
             {
-                if ( isMatchIdNumber && isMatchTelephoneNumber )
+                if (this.PinBox.Text.Length == 18 &&
+                    Regex.IsMatch(this.TelBox.Text, @"^1[3-9]\d{9}$") &&
+                    Regex.IsMatch(this.PinBox.Text, @"^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X|x)$") 
+
+                    )
                 {
                     DataSaved = true;
                     this.Close();
                 }
                 else
                 {
-                    string _ = String.Join("，", errorData);
-                    HandyControl.Controls.MessageBox.Show($"请输入符合格式的数据\n出错的数据包括：{_}", "错误",  MessageBoxButton.OK, MessageBoxImage.Error);
+                    HandyControl.Controls.MessageBox.Show("请输入符合格式的数据", "错误",  MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 
             }
