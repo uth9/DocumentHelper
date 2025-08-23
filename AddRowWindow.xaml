@@ -35,12 +35,16 @@
                     </hc:SimpleStackPanel>
                 </hc:SimpleStackPanel>
 
-                <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Width="540">
+                <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="身份证号：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
                         <hc:TextBox x:Name="PinBox" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
-                    
+                    <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
+                        <hc:SimpleText Text="再次输入身份证号：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
+                        <hc:TextBox x:Name="ReconfirmedPinBox" HorizontalAlignment="Stretch" Width="150"/>
+                    </hc:SimpleStackPanel>
+
                 </hc:SimpleStackPanel>
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
