@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HandyControl;
 
 namespace DocumentHelper
 {
     /// <summary>
     /// CustomSettings.xaml 的交互逻辑
     /// </summary>
-    public partial class CustomSettings : Window
+    public partial class CustomSettings : HandyControl.Controls.Window
     {
         public CustomSettings()
         {

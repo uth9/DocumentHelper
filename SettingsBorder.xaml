@@ -1,0 +1,32 @@
+﻿<!-- 设置边框控件，命名空间为DocumentHelper -->
+<Border x:Class="DocumentHelper.SettingsBorder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:DocumentHelper"
+        mc:Ignorable="d"
+        CornerRadius="5"
+        Margin="8"
+        Background="#DDFFFFFF">
+
+    <!-- 使用Grid布局实现右侧对齐 -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- HandyControl SimpleText 控件 -->
+        <hc:SimpleText x:Name="CustomText" Margin="10,0" VerticalAlignment="Center"
+                      Text="{Binding SettingText, RelativeSource={RelativeSource AncestorType=local:SettingsBorder}}"/>
+
+        <!-- CheckBox 控件 - 放置在右侧，设置较大尺寸和边距 -->
+        <CheckBox x:Name="CustomCheckBox" Grid.Column="1" 
+                 Margin="0,0,10,0" VerticalAlignment="Center"
+                 Width="30" Height="30"
+                 IsChecked="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=local:SettingsBorder}, Mode=TwoWay}"/>
+    </Grid>
+
+</Border>

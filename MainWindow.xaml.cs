@@ -107,6 +107,7 @@ namespace DocumentHelper
                     StudentName = AddNewRowWindow.StudentNameBox.Text,
                     StudentNation = "汉族",//AddNewRowWindow.StudentNameBox.Text,
                     Pin = AddNewRowWindow.PinBox.Text,
+                    ReconfirmedPin = AddNewRowWindow.ReconfirmedPinBox.Text,
                     MemberId = AddNewRowWindow.MemberIdBox.Text,
                     RegDate = "2025/01",//string.Concat(AddNewRowWindow.RegYearBox.Text, "/", AddNewRowWindow.RegMonthBox.Text),
                     Tel = AddNewRowWindow.TelBox.Text,
@@ -114,6 +115,14 @@ namespace DocumentHelper
                     VolunteerState = (bool)AddNewRowWindow.VolunteerBox.IsChecked,
                 });
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CustomSettings SettingWindow = new CustomSettings();
+            SettingWindow.Owner = this;
+            SettingWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            SettingWindow.ShowDialog();
         }
     }
 }
