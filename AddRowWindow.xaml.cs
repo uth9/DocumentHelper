@@ -71,6 +71,13 @@ namespace DocumentHelper
 
         private void CommitButton_Click(object sender, RoutedEventArgs e)
         {
+            List<string> errorData = [];
+            bool isMatchTelephoneNumber = Regex.IsMatch(TelBox.Text, @"^1[3-9]\d{9}$");
+            if (!isMatchTelephoneNumber) errorData.Add("手机号码");
+            bool isMatchIdNumber = Regex.IsMatch(PinBox.Text, @"^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X|x)$") &&
+                PinBox.Text.Length == 18 &&
+                PinBox.Text.ToLower() == ReconfirmedPinBox.Text.ToLower();
+            if (!isMatchIdNumber) errorData.Add("身份证号");
             if (true)
             {
                 if (this.PinBox.Text.Length == 18 &&
