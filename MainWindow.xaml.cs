@@ -124,5 +124,17 @@ namespace DocumentHelper
             SettingWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             SettingWindow.ShowDialog();
         }
+
+        private void StartServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            AssistWindow ServiceWindow = new AssistWindow();
+            ServiceWindow.Owner = this;
+            ServiceWindow.DataContext = this.StudentDataGrid.Items.Count switch
+            {
+                >0 => this.StudentDataGrid.Items[0],
+                _ => null,
+            };
+            ServiceWindow.ShowDialog();
+        }
     }
 }

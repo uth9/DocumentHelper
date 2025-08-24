@@ -25,20 +25,8 @@
             </Border.Effect>
         </Border>
         <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <hc:SideMenu BorderThickness="1" Width="150" Margin="0">
-                <hc:Interaction.Triggers>
-                    <hc:EventTrigger EventName="SelectionChanged">
-                        <hc:EventToCommand Command="{Binding SwitchItemCmd}" PassEventArgsToCommand="True" />
-                    </hc:EventTrigger>
-                </hc:Interaction.Triggers>
-                <hc:SideMenuItem Header="Overview">
-                    <hc:SideMenuItem.Icon>
-                        <Image Source="/static/AddRow.png" Width="24" Height="24"/>
-                    </hc:SideMenuItem.Icon>
-                </hc:SideMenuItem>
-            </hc:SideMenu>
             <hc:SimpleStackPanel>
-                <local:SettingsBorder SettingText="默认设置项" IsChecked="True" Width="510" Height="40" Margin="20"/>
+                <local:SettingsBorder SettingText="默认设置项" IsChecked="True" Width="510" Height="40" Margin="20" IsCheckedChanged="SettingsBorder_IsCheckedChanged"/>
             </hc:SimpleStackPanel>
         </hc:SimpleStackPanel>
     </Grid>

@@ -16,18 +16,19 @@ using HandyControl;
 namespace DocumentHelper
 {
     /// <summary>
-    /// CustomSettings.xaml 的交互逻辑
+    /// AssistWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class CustomSettings : HandyControl.Controls.Window
+    public partial class AssistWindow : HandyControl.Controls.Window
     {
-        public CustomSettings()
+        public AssistWindow()
         {
             InitializeComponent();
         }
 
-        private void SettingsBorder_IsCheckedChanged(object sender, EventArgs e)
+        private void SimpleStackPanel_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
+            this.NameShower.DataContext = this.DataContext;
+            this.NationShower.DataContext = this.DataContext;
         }
     }
 }

@@ -64,13 +64,13 @@
                         </hc:SimpleStackPanel>
                     </Button>
                     <hc:Divider Orientation="Vertical" Margin="10,15,10,15" LineStrokeThickness="2" Height="Auto" LineStroke="#80000000"/>
-                    <Button Height="45" FontSize="14" Margin="5,0,5,0" >
+                    <Button x:Name="StartServiceButton" Height="45" FontSize="14" Margin="5,0,5,0" Click="StartServiceButton_Click">
                         <hc:SimpleStackPanel Orientation="Horizontal">
                             <Image Source="/static/StartService.png" Height="30"/>
                             <TextBlock Text=" 启动服务" VerticalAlignment="Center"/>
                         </hc:SimpleStackPanel>
                     </Button>
-                    <Button Height="45" FontSize="14" Margin="5,0,5,0" >
+                    <Button Height="45" FontSize="14" Margin="5,0,5,0">
                         <hc:SimpleStackPanel Orientation="Horizontal">
                             <Image Source="/static/StopService.png" Height="30"/>
                             <TextBlock Text=" 停止服务" VerticalAlignment="Center"/>

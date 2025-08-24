@@ -68,6 +68,18 @@ namespace DocumentHelper
         }
 
         /// <summary>
+        /// CheckBox状态改变事件处理
+        /// </summary>
+        private void CheckBox_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            // 更新IsChecked属性
+            SetCurrentValue(IsCheckedProperty, CustomCheckBox.IsChecked);
+
+            // 触发IsCheckedChanged事件
+            IsCheckedChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
         /// SettingText属性变化时的回调方法
         /// </summary>
         private static void OnSettingTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -93,7 +105,15 @@ namespace DocumentHelper
             {
                 // 确保CustomCheckBox控件的选中状态与IsChecked属性同步
                 control.CustomCheckBox.IsChecked = (bool?)e.NewValue;
+
+                // 触发IsCheckedChanged事件
+                // control.IsCheckedChanged?.Invoke(control, EventArgs.Empty);
             }
         }
+
+        /// <summary>
+        /// IsChecked属性改变时触发的事件
+        /// </summary>
+        public event EventHandler IsCheckedChanged;
     }
 }

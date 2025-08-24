@@ -26,7 +26,10 @@
         <CheckBox x:Name="CustomCheckBox" Grid.Column="1" 
                  Margin="0,0,10,0" VerticalAlignment="Center"
                  Width="30" Height="30"
-                 IsChecked="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=local:SettingsBorder}, Mode=TwoWay}"/>
+                 IsChecked="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=local:SettingsBorder}, Mode=TwoWay}"
+                 Checked="CheckBox_CheckedChanged"
+                 Unchecked="CheckBox_CheckedChanged"
+                 Indeterminate="CheckBox_CheckedChanged"/>
     </Grid>
 
 </Border>
