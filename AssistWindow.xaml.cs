@@ -25,10 +25,17 @@ namespace DocumentHelper
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 外部改变该窗口的DataContext时自动更新窗体内所有数据显示组件的DataContext
+        /// 避免在外部做过多操作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SimpleStackPanel_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             this.NameShower.DataContext = this.DataContext;
             this.NationShower.DataContext = this.DataContext;
+            // 尚未全部完成
         }
     }
 }

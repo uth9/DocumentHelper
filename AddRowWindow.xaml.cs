@@ -69,6 +69,21 @@ namespace DocumentHelper
             this.Close();
         }
 
+        /// <summary>
+        /// 数据校验逻辑暂未完成编写
+        /// 暂定逻辑如下：
+        ///     【姓名】不得少于两个字或多于五个字
+        ///     【民族】不得为空
+        ///     【身份证号】不得为空且符合对应的RegEx
+        ///     两次【身份证号】需一致
+        ///     【入团时间】不得为空
+        ///     【发展编号】不得为空，长度为8位？12位？
+        ///     【手机号码】不得为空且符合对应RegEx
+        ///     【户籍地址】不得为空
+        ///     若【邮箱】选择填写则不得为空
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CommitButton_Click(object sender, RoutedEventArgs e)
         {
             List<string> errorData = [];

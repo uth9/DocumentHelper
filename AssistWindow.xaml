@@ -7,6 +7,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="AssistWindow" Height="450" Width="800">
+    <!--窗体比例应偏向竖屏，启动后停靠右上角-->
     <Grid>
         <hc:SimpleStackPanel Orientation="Vertical" DataContextChanged="SimpleStackPanel_DataContextChanged">
             <hc:SimpleText Text="当前选中： 上一位： 下一位：" Margin="20"/>
@@ -20,6 +21,8 @@
                     <local:Student/>
                 </local:StudentDataShower.DataContext>
             </local:StudentDataShower>
+            <!--数据显示组件显示逻辑需要修改得更符合整体风格-->
+            <!--添加其它数据显示组件在此处-->
         </hc:SimpleStackPanel>
     </Grid>
 </hc:Window>
