@@ -87,6 +87,9 @@ namespace DocumentHelper
             "珞巴族",
             "塔塔尔族" };
 
+        // 日期列表
+        public string[] _YearList = ["2025", "2026"]
+
         public MainWindow()
         {
             InitializeComponent();
