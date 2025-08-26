@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using HandyControl;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 namespace DocumentHelper
 {
@@ -23,10 +24,17 @@ namespace DocumentHelper
     public partial class MainWindow : HandyControl.Controls.Window
     {
         /// <summary>
+        /// 屏幕数据
+        /// </summary>
+        private static double ScreenWidth = SystemParameters.WorkArea.Width;
+        private static double ScreenHeight = SystemParameters.WorkArea.Height;
+
+        /// <summary>
         /// 命令
         /// </summary>
         public static RoutedUICommand StartServiceCommand = new RoutedUICommand("启动服务", "StartService", typeof(MainWindow));
         public static RoutedUICommand DeleteRowCommand = new RoutedUICommand("删除条目", "Delete", typeof(MainWindow));
+        public static RoutedUICommand SaveToCommand = new RoutedUICommand("保存到", "SaveTo", typeof(MainWindow));
 
 
         /// <summary>
@@ -101,7 +109,6 @@ namespace DocumentHelper
         {
             InitializeComponent();
             DataContext = this;
-
         }
 
         /// <summary>
@@ -182,11 +189,10 @@ namespace DocumentHelper
         {
             AssistWindow ServiceWindow = new AssistWindow();
             ServiceWindow.Owner = this;
-            ServiceWindow.DataContext = this.StudentDataGrid.Items.Count switch
-            {
-                >0 => this.StudentDataGrid.Items[0], // 占位逻辑，后期修改
-                _ => null,
-            };
+            ServiceWindow.SelectIndex = this.StudentDataGrid.SelectedIndex switch { < 0 => 0, >= 0 => this.StudentDataGrid.SelectedIndex };
+            ServiceWindow.DataContext = this.StudentCollection;
+            ServiceWindow.Left = ScreenWidth - ServiceWindow.Width - 20;
+            ServiceWindow.Top = 20;
             ServiceWindow.ShowDialog();
         }
 
@@ -200,6 +206,7 @@ namespace DocumentHelper
             {
                 e.CanExecute = false;
             }
+            e.Handled = true;
         }
 
         private void StartService_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -207,7 +214,7 @@ namespace DocumentHelper
             this.StartServiceButton_Click();
         }
 
-        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void DeleteRowCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (this.StudentCollection.Count != 0)
             {
@@ -217,10 +224,10 @@ namespace DocumentHelper
             {
                 e.CanExecute = false;
             }
-
+            e.Handled = true;
         }
 
-        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void DeleteRowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBoxResult result = HandyControl.Controls.MessageBox.Show("是否确认删除选中项？", "提示", MessageBoxButton.YesNo, MessageBoxImage.Information);
             if (result == MessageBoxResult.Yes)

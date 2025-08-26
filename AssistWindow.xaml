@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="AssistWindow" Height="450" Width="400" ShowNonClientArea="False">
+        Title="AssistWindow" Height="450" Width="300" ShowNonClientArea="False">
     <!--窗体比例应偏向竖屏，启动后停靠右上角-->
+    <hc:Window.CommandBindings>
+        <CommandBinding Command="local:AssistWindow.LastPageCommand" CanExecute="LastPageCommand_CanExecute" Executed="LastPageCommand_Executed" />
+        <CommandBinding Command="local:AssistWindow.NextPageCommand" CanExecute="NextPageCommand_CanExecute" Executed="NextPageCommand_Executed" />
+    </hc:Window.CommandBindings>
     <Grid>
         <hc:SimpleStackPanel Orientation="Vertical" DataContextChanged="SimpleStackPanel_DataContextChanged">
             <hc:SimpleText Text="当前选中： 上一位： 下一位：" Margin="20"/>
@@ -32,9 +36,9 @@
             <!-- 优化后的DataGrid -->
             <!--按钮栏-->
             <hc:SimpleStackPanel VerticalAlignment="Bottom" Height="60" Orientation="Horizontal">
-                <Button x:Name="BeforePage" Content="上一条" Margin="20,0,10,0" Height="40" Width="100"/>
-                <Button x:Name="AfterPage" Content="下一条" Margin="20,0,10,0" Height="40" Width="100" Background="#326CF3" Foreground="White"/>
-                <Button x:Name="Exit" Content="退出" Margin="20,0,10,0" Height="40" Width="100" Background="#326CF3" Foreground="White" Click="Exit_Click"/>
+                <Button x:Name="BeforePage" Command="local:AssistWindow.LastPageCommand" Content="上一条" Margin="20,0,10,0" Height="40" Width="65"/>
+                <Button x:Name="AfterPage" Command="local:AssistWindow.NextPageCommand" Content="下一条" Margin="20,0,10,0" Height="40" Width="65" Background="#326CF3" Foreground="White"/>
+                <Button x:Name="Exit" Content="退出" Margin="20,0,10,0" Height="40" Width="70" Background="#326CF3" Foreground="White" Click="Exit_Click"/>
             </hc:SimpleStackPanel>
         </hc:SimpleStackPanel>
 

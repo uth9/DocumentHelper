@@ -83,8 +83,8 @@
                 </hc:SimpleStackPanel>
 
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,35,0,0">
-                    <Button Content="取消" Margin="10,0,10,0" x:Name="CancelButton" HorizontalAlignment="Center" Width="100" Height="30" Click="CancelButton_Click"/>
-                    <Button Content="确认" Margin="10,0,10,0" x:Name="CommitButton" HorizontalAlignment="Center" Width="100" Height="30" Background="#326CF3" Foreground="White" Click="CommitButton_Click"/>
+                    <Button Content="取消" IsCancel="True" Margin="10,0,10,0" x:Name="CancelButton" HorizontalAlignment="Center" Width="100" Height="30" Click="CancelButton_Click"/>
+                    <Button Content="确认" IsDefault="True" Margin="10,0,10,0" x:Name="CommitButton" HorizontalAlignment="Center" Width="100" Height="30" Background="#326CF3" Foreground="White" Click="CommitButton_Click"/>
                 </hc:SimpleStackPanel>
 
 

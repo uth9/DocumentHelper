@@ -167,6 +167,6 @@
     <!--命令-->
     <hc:Window.CommandBindings>
         <CommandBinding Command="local:MainWindow.StartServiceCommand" CanExecute="StartService_CanExecute" Executed="StartService_Executed"/>
-        <CommandBinding Command="local:MainWindow.DeleteRowCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="local:MainWindow.DeleteRowCommand" CanExecute="DeleteRowCommand_CanExecute" Executed="DeleteRowCommand_Executed"/>
     </hc:Window.CommandBindings>
 </hc:Window>
