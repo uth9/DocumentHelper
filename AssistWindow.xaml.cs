@@ -37,5 +37,14 @@ namespace DocumentHelper
             this.NationShower.DataContext = this.DataContext;
             // 尚未全部完成
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = HandyControl.Controls.MessageBox.Show("是否确认要停止服务并返回主窗口？", "提示", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

@@ -23,6 +23,13 @@ namespace DocumentHelper
     public partial class MainWindow : HandyControl.Controls.Window
     {
         /// <summary>
+        /// 命令
+        /// </summary>
+        public static RoutedUICommand StartServiceCommand = new RoutedUICommand("启动服务", "StartService", typeof(MainWindow));
+        public static RoutedUICommand DeleteRowCommand = new RoutedUICommand("删除条目", "Delete", typeof(MainWindow));
+
+
+        /// <summary>
         /// 数据视图的数据源，存储学生数据
         /// </summary>
         public ObservableCollection<Student> StudentCollection { get; set; } = new ObservableCollection<Student>();
@@ -88,7 +95,7 @@ namespace DocumentHelper
             "塔塔尔族" };
 
         // 日期列表
-        public string[] _YearList = ["2025", "2026"]
+        public string[] _YearList = ["2025", "2026"];
 
         public MainWindow()
         {
@@ -171,7 +178,7 @@ namespace DocumentHelper
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void StartServiceButton_Click(object sender, RoutedEventArgs e)
+        private void StartServiceButton_Click()
         {
             AssistWindow ServiceWindow = new AssistWindow();
             ServiceWindow.Owner = this;
@@ -181,6 +188,45 @@ namespace DocumentHelper
                 _ => null,
             };
             ServiceWindow.ShowDialog();
+        }
+
+        private void StartService_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.StudentCollection.Count != 0)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void StartService_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.StartServiceButton_Click();
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.StudentCollection.Count != 0)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBoxResult result = HandyControl.Controls.MessageBox.Show("是否确认删除选中项？", "提示", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.StudentCollection.RemoveAt(this.StudentDataGrid.SelectedIndex);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="AssistWindow" Height="450" Width="800">
+        Title="AssistWindow" Height="450" Width="400" ShowNonClientArea="False">
     <!--窗体比例应偏向竖屏，启动后停靠右上角-->
     <Grid>
         <hc:SimpleStackPanel Orientation="Vertical" DataContextChanged="SimpleStackPanel_DataContextChanged">
@@ -23,6 +23,20 @@
             </local:StudentDataShower>
             <!--数据显示组件显示逻辑需要修改得更符合整体风格-->
             <!--添加其它数据显示组件在此处-->
+            
         </hc:SimpleStackPanel>
+        <hc:SimpleStackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <hc:SimpleStackPanel VerticalAlignment="Top">
+                <hc:Divider Height="5" Margin="40,0,40,0" LineStrokeThickness="2" LineStroke="#FF7D8F95"/>
+            </hc:SimpleStackPanel>
+            <!-- 优化后的DataGrid -->
+            <!--按钮栏-->
+            <hc:SimpleStackPanel VerticalAlignment="Bottom" Height="60" Orientation="Horizontal">
+                <Button x:Name="BeforePage" Content="上一条" Margin="20,0,10,0" Height="40" Width="100"/>
+                <Button x:Name="AfterPage" Content="下一条" Margin="20,0,10,0" Height="40" Width="100" Background="#326CF3" Foreground="White"/>
+                <Button x:Name="Exit" Content="退出" Margin="20,0,10,0" Height="40" Width="100" Background="#326CF3" Foreground="White" Click="Exit_Click"/>
+            </hc:SimpleStackPanel>
+        </hc:SimpleStackPanel>
+
     </Grid>
 </hc:Window>

@@ -58,7 +58,8 @@ namespace DocumentHelper
             }
             else
             {
-                DialogResult = true;
+                if (DataCanceled) { DialogResult = false; }
+                else { DialogResult = true; }
                 e.Cancel = false;
             }
         }

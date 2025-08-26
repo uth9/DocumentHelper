@@ -62,7 +62,7 @@
                         尚未实现的需求：
                             在没有可选条目的时候保持不可用
                             单机后弹窗提示二次确认-->
-                    <Button Height="45" FontSize="14" Margin="5,0,5,0" >
+                    <Button Height="45" FontSize="14" Margin="5,0,5,0" Command="local:MainWindow.DeleteRowCommand">
                         <hc:SimpleStackPanel Orientation="Horizontal">
                             <Image Source="/static/DeleteRow.png" Height="30"/>
                             <TextBlock Text=" 删除条目" VerticalAlignment="Center"/>
@@ -70,19 +70,21 @@
                     </Button>
                     <hc:Divider Orientation="Vertical" Margin="10,15,10,15" LineStrokeThickness="2" Height="Auto" LineStroke="#80000000"/>
                     <!--点按启动【AssistWindow】-->
-                    <Button x:Name="StartServiceButton" Height="45" FontSize="14" Margin="5,0,5,0" Click="StartServiceButton_Click">
+                    <Button x:Name="StartServiceButton" Height="45" FontSize="14" Margin="5,0,5,0" Command="local:MainWindow.StartServiceCommand">
                         <hc:SimpleStackPanel Orientation="Horizontal">
                             <Image Source="/static/StartService.png" Height="30"/>
                             <TextBlock Text=" 启动服务" VerticalAlignment="Center"/>
                         </hc:SimpleStackPanel>
                     </Button>
                     <!--这个似乎可以删掉，设想是启动服务后这个窗口就隐藏了，【AssistWindow】负责停止-->
+                    <!--
                     <Button Height="45" FontSize="14" Margin="5,0,5,0">
                         <hc:SimpleStackPanel Orientation="Horizontal">
                             <Image Source="/static/StopService.png" Height="30"/>
                             <TextBlock Text=" 停止服务" VerticalAlignment="Center"/>
                         </hc:SimpleStackPanel>
                     </Button>
+                    -->
                     <hc:Divider Orientation="Vertical" Margin="10,15,10,15" LineStrokeThickness="2" Height="Auto" LineStroke="#80000000"/>
                     <!--暂时不知道该怎么做，涉及数据存储肯定要加密，带时候要改Student类-->
                     <Button Height="45" FontSize="14" Margin="5,0,5,0" >
@@ -162,4 +164,9 @@
             </DataGrid>
         </hc:SimpleStackPanel>
     </Grid>
+    <!--命令-->
+    <hc:Window.CommandBindings>
+        <CommandBinding Command="local:MainWindow.StartServiceCommand" CanExecute="StartService_CanExecute" Executed="StartService_Executed"/>
+        <CommandBinding Command="local:MainWindow.DeleteRowCommand" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+    </hc:Window.CommandBindings>
 </hc:Window>
