@@ -125,8 +125,25 @@ namespace DocumentHelper
                 EditWindow EditRowWindow = new EditWindow();
                 EditRowWindow.Owner = this;
                 EditRowWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                EditRowWindow.DataContext = this.StudentCollection[SelectIndex];
+                Student OldStudentData = this.StudentCollection[SelectIndex];
+                Student NewStudentData = new Student()
+                {
+                    StudentName = OldStudentData.StudentName,
+                    StudentNation = OldStudentData.StudentNation,
+                    Pin = OldStudentData.Pin,
+                    RegMonth = OldStudentData.RegMonth,
+                    RegYear = OldStudentData.RegYear,
+                    MemberId = OldStudentData.MemberId,
+                    Tel = OldStudentData.Tel,
+                    Address = OldStudentData.Address,
+                    Mail = OldStudentData.Mail,
+                    MailState = OldStudentData.MailState,
+                    VolunteerState = OldStudentData.VolunteerState,
+                };
+                EditRowWindow.DataContext = NewStudentData;
+                EditRowWindow.NationBox.ItemsSource = this._NationList;
                 EditRowWindow.ShowDialog();
+                this.StudentCollection[SelectIndex] = (Student)EditRowWindow.DataContext;
             }
             else
             {
@@ -161,7 +178,7 @@ namespace DocumentHelper
                 this.StudentCollection.Add( new Student()
                 {
                     StudentName = AddNewRowWindow.StudentNameBox.Text,
-                    StudentNation = "汉族",//AddNewRowWindow.StudentNameBox.Text, //测试用数据
+                    StudentNation = AddNewRowWindow.NationBox.SelectedItem switch { null => "", _ => AddNewRowWindow.NationBox.SelectedItem.ToString()}, //测试用数据
                     Pin = AddNewRowWindow.PinBox.Text,
                     MemberId = AddNewRowWindow.MemberIdBox.Text,
                     RegDate = "2025/01",//string.Concat(AddNewRowWindow.RegYearBox.Text, "/", AddNewRowWindow.RegMonthBox.Text),

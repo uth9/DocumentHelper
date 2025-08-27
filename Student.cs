@@ -106,6 +106,26 @@ namespace DocumentHelper
                 this.onPropertyChanged(nameof(this.Address));
             }
         }
+        private string _Mail = "";
+        public string Mail
+        {
+            get => this._Mail;
+            set
+            {
+                this._Mail = value;
+                this.onPropertyChanged(nameof(this.Mail));
+            }
+        }
+        private bool _MailState = false;
+        public bool MailState
+        {
+            get => _MailState;
+            set
+            {
+                this._MailState = value;
+                this.onPropertyChanged(nameof(this.MailState));
+            }
+        }
         private bool _VolunteerState = true;
         public bool VolunteerState
         {

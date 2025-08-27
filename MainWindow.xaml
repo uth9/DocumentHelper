@@ -154,7 +154,7 @@
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="姓名" Binding="{Binding StudentName}" Width="80"/>
-                    <DataGridTextColumn Header="民族" Binding="{Binding StudentNation}" Width="60"/>
+                    <DataGridTextColumn Header="民族" Binding="{Binding StudentNation}" Width="90"/>
                     <DataGridTextColumn Header="注册时间" Binding="{Binding RegDate}" Width="80"/>
                     <DataGridTextColumn Header="身份证号" Binding="{Binding Pin}" Width="160"/>
                     <DataGridTextColumn Header="住址" Binding="{Binding Address}" Width="*"/>

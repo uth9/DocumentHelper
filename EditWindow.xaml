@@ -35,7 +35,7 @@
 
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="民族：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:ComboBox x:Name="NationBox" Text="{Binding StudentNation}" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:ComboBox x:Name="NationBox" SelectedItem="{Binding StudentNation}" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
                 </hc:SimpleStackPanel>
 
@@ -70,8 +70,8 @@
                     </hc:SimpleStackPanel>
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5" Width="260">
                         <hc:SimpleStackPanel Width="50"/>
-                        <CheckBox x:Name="MailStatu" Content="邮箱：" VerticalAlignment="Center" HorizontalAlignment="Right" Width="60"/>
-                        <hc:TextBox x:Name="MailBox" HorizontalAlignment="Stretch" Width="150" IsEnabled="{Binding IsChecked, ElementName=MailStatu}"/>
+                        <CheckBox x:Name="MailStatu" IsChecked="{Binding MailState}" Content="邮箱：" VerticalAlignment="Center" HorizontalAlignment="Right" Width="60"/>
+                        <hc:TextBox x:Name="MailBox" Text="{Binding Mail}" HorizontalAlignment="Stretch" Width="150" IsEnabled="{Binding IsChecked, ElementName=MailStatu}"/>
 
                     </hc:SimpleStackPanel>
                 </hc:SimpleStackPanel>
