@@ -1,17 +1,18 @@
-﻿<hc:Window x:Class="DocumentHelper.AddRowWindow"
+﻿<hc:Window x:Class="DocumentHelper.EditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
-        xmlns:properties="clr-namespace:DocumentHelper.Properties"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="新建条目" Height="380" Width="650" Closing="Window_Closing" Icon="/Icon.png">
+        Title="编辑条目" Height="380" Width="650" Closing="Window_Closing" Icon="/Icon.png">
     <hc:Window.CommandBindings>
-        <CommandBinding Command="local:AddRowWindow.CommitCommand" CanExecute="CommitCommand_CanExecute" Executed="CommitCommand_Executed"/>
+        <CommandBinding Command="local:EditWindow.CommitCommand" CanExecute="CommitCommand_CanExecute" Executed="CommitCommand_Executed"/>
     </hc:Window.CommandBindings>
+    <hc:Window.DataContext>
+        <local:Student/>
+    </hc:Window.DataContext>
     <Grid>
         <!-- 背景图片 -->
         <Image Source="/background.png" Stretch="UniformToFill" Opacity="1" Margin="0"/>
@@ -23,71 +24,63 @@
             </Border.Effect>
         </Border>
 
-        <Border Background="#00FFFFFF" CornerRadius="5" Margin="20" HorizontalAlignment="Stretch">
+        <Border Background="#00FFFFFF" CornerRadius="5" Margin="20,40,20,20" HorizontalAlignment="Stretch">
             <hc:SimpleStackPanel>
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="姓名：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="StudentNameBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:TextBox x:Name="StudentNameBox" Text="{Binding StudentName}" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
 
 
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="民族：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:ComboBox x:Name="NationBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:ComboBox x:Name="NationBox" Text="{Binding StudentNation}" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
                 </hc:SimpleStackPanel>
 
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="身份证号：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="PinBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:TextBox x:Name="PinBox" Text="{Binding Pin}" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
-                        <hc:SimpleText Text="再次输入身份证号：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="ReconfirmedPinBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:SimpleText Text="入团时间：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
+                        <hc:ComboBox x:Name="RegYearBox" SelectedItem="{Binding RegYear}" Margin="0,0,5,0" Width="70"/>
+                        <hc:ComboBox x:Name="RegMonthBox" SelectedItem="{Binding RegMonth}" Margin="5,0,0,0" Width="70"/>
                     </hc:SimpleStackPanel>
 
                 </hc:SimpleStackPanel>
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
-                        <hc:SimpleText Text="入团时间：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:ComboBox x:Name="RegYearBox" Margin="0,0,5,0" Width="70"/>
-                        <hc:ComboBox x:Name="RegMonthBox" Margin="5,0,0,0" Width="70"/>
-                    </hc:SimpleStackPanel>
 
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="发展编号：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="MemberIdBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:TextBox x:Name="MemberIdBox" Text="{Binding MemberId}" HorizontalAlignment="Stretch" Width="150"/>
+                    </hc:SimpleStackPanel>
+                    <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
+                        <hc:SimpleText Text="手机号码：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
+                        <hc:TextBox x:Name="TelBox" Text="{Binding Tel}" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
                 </hc:SimpleStackPanel>
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
-                        <hc:SimpleText Text="手机号码：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="TelBox" HorizontalAlignment="Stretch" Width="150"/>
-                    </hc:SimpleStackPanel>
 
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="户籍地址：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="AddressBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <hc:TextBox x:Name="AddressBox" Text="{Binding Address}" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
-                </hc:SimpleStackPanel>
-                <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5" Width="260">
                         <hc:SimpleStackPanel Width="50"/>
                         <CheckBox x:Name="MailStatu" Content="邮箱：" VerticalAlignment="Center" HorizontalAlignment="Right" Width="60"/>
                         <hc:TextBox x:Name="MailBox" HorizontalAlignment="Stretch" Width="150" IsEnabled="{Binding IsChecked, ElementName=MailStatu}"/>
 
                     </hc:SimpleStackPanel>
-                    <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5" Width="260"/>
                 </hc:SimpleStackPanel>
                 <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,10,5">
-                    <CheckBox x:Name="VolunteerBox" Content="是否注册志愿者" VerticalAlignment="Center" Width="175" Margin="0,5,10,5"/>
+                    <CheckBox x:Name="VolunteerBox" IsChecked="{Binding VolunteerState}" Content="是否注册志愿者" VerticalAlignment="Center" Width="175" Margin="0,5,10,5"/>
                 </hc:SimpleStackPanel>
 
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,35,0,0">
-                    <Button Content="取消" IsCancel="True" Margin="10,0,10,0" x:Name="CancelButton" HorizontalAlignment="Center" Width="100" Height="30" Click="CancelButton_Click"/>
-                    <Button Content="确认" IsDefault="True" Margin="10,0,10,0" x:Name="CommitButton" HorizontalAlignment="Center" Width="100" Height="30" Background="#326CF3" Foreground="White" Command="local:AddRowWindow.CommitCommand"/>
+                    <Button Content="确认" IsDefault="True" Margin="10,0,10,0" x:Name="CommitButton" HorizontalAlignment="Center" Width="100" Height="30" Background="#326CF3" Foreground="White" Command="local:EditWindow.CommitCommand"/>
                 </hc:SimpleStackPanel>
 
 

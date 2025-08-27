@@ -17,10 +17,13 @@ namespace DocumentHelper
 {
     /// <summary>
     /// StudentDataShower.xaml 的交互逻辑
+    /// 用于在点按【启动服务】弹出的提示窗口中显示当前条目的详细数据
     /// </summary>
     public partial class StudentDataShower : UserControl
     {
-        // 定义依赖属性
+        /// <summary>
+        /// 定义依赖属性【DataHint】，绑定于SimpleText的Text属性
+        /// </summary>
         public static readonly DependencyProperty DataHintProperty =
             DependencyProperty.Register("DataHint", typeof(string), typeof(StudentDataShower),
                 new PropertyMetadata("提示："));
@@ -32,7 +35,9 @@ namespace DocumentHelper
             set { SetValue(DataHintProperty, value); }
         }
 
-        // 定义依赖属性
+        /// <summary>
+        /// 定义依赖属性【DataResource】，绑定于SimpleText的Text属性
+        /// </summary>
         public static readonly DependencyProperty DataResourceProperty =
             DependencyProperty.Register("DataResource", typeof(string), typeof(StudentDataShower),
                 new PropertyMetadata("提示："));
