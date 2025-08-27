@@ -119,7 +119,20 @@ namespace DocumentHelper
         /// <param name="e"></param>
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            e.Handled = true;
+            int SelectIndex = this.StudentDataGrid.SelectedIndex;
+            if (SelectIndex != -1)
+            {
+                EditWindow EditRowWindow = new EditWindow();
+                EditRowWindow.Owner = this;
+                EditRowWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                EditRowWindow.DataContext = this.StudentCollection[SelectIndex];
+                EditRowWindow.ShowDialog();
+            }
+            else
+            {
+                HandyControl.Controls.MessageBox.Show("索引出现错误，请重新尝试或联系开发者", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+                e.Handled = true;
         }
 
         /// <summary>
@@ -142,7 +155,7 @@ namespace DocumentHelper
             AddNewRowWindow.DataContext = this;
             AddNewRowWindow.NationBox.ItemsSource = _NationList; // 设置下拉列表默认选中项
             AddNewRowWindow.NationBox.SelectedIndex = 0;
-            bool ChildDialogResult = (bool)AddNewRowWindow.ShowDialog();
+            bool ChildDialogResult = AddNewRowWindow.ShowDialog() switch { true => true, false => false, null => false };
             if (ChildDialogResult) // 如果退出前选择保存数据
             {
                 this.StudentCollection.Add( new Student()
@@ -150,7 +163,6 @@ namespace DocumentHelper
                     StudentName = AddNewRowWindow.StudentNameBox.Text,
                     StudentNation = "汉族",//AddNewRowWindow.StudentNameBox.Text, //测试用数据
                     Pin = AddNewRowWindow.PinBox.Text,
-                    ReconfirmedPin = AddNewRowWindow.ReconfirmedPinBox.Text,
                     MemberId = AddNewRowWindow.MemberIdBox.Text,
                     RegDate = "2025/01",//string.Concat(AddNewRowWindow.RegYearBox.Text, "/", AddNewRowWindow.RegMonthBox.Text),
                     Tel = AddNewRowWindow.TelBox.Text,
@@ -193,7 +205,9 @@ namespace DocumentHelper
             ServiceWindow.DataContext = this.StudentCollection;
             ServiceWindow.Left = ScreenWidth - ServiceWindow.Width - 20;
             ServiceWindow.Top = 20;
+            ServiceWindow.Hide();
             ServiceWindow.ShowDialog();
+            ServiceWindow.Show();
         }
 
         private void StartService_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -230,7 +244,7 @@ namespace DocumentHelper
         private void DeleteRowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBoxResult result = HandyControl.Controls.MessageBox.Show("是否确认删除选中项？", "提示", MessageBoxButton.YesNo, MessageBoxImage.Information);
-            if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes && this.StudentDataGrid.SelectedIndex != -1)
             {
                 this.StudentCollection.RemoveAt(this.StudentDataGrid.SelectedIndex);
             }

@@ -23,31 +23,43 @@ namespace DocumentHelper
 
     public partial class AddRowWindow : HandyControl.Controls.Window
     {
-        public bool IfSaveBeforeExit = false;
-        public bool DataSaved = false;
-        public bool DataCanceled = false;
+
+        public static RoutedUICommand CommitCommand = new RoutedUICommand("提交数据", "CommitCommand", typeof(AddRowWindow));
+
+        public enum ExitResults { None, Saved, Canceled };
+        public ExitResults ExitResult = ExitResults.None;
+
         public AddRowWindow()
         {
             InitializeComponent();
-            IfSaveBeforeExit = false;
-            DataSaved = false;
-            DataCanceled = false;
+        }
+
+        private bool DataChecker()
+        {
+            /* 此处填写数据校验逻辑 */
+            return true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!DataSaved && !DataCanceled)
+            if (ExitResult == ExitResults.None)
             {
                 MessageBoxResult result = HandyControl.Controls.MessageBox.Show("该条目尚未保存，是否在退出前保存？", "警告", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        IfSaveBeforeExit = true;
-                        DialogResult = true;
-                        e.Cancel = false;
+                        if (DataChecker())
+                        {
+                            DialogResult = true;
+                            e.Cancel = false;
+                        } else
+                        {
+                            HandyControl.Controls.MessageBox.Show("出现数据错误，请修改后重试", "错误", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                            DialogResult = false;
+                            e.Cancel = true;
+                        }
                         break;
                     case MessageBoxResult.No:
-                        IfSaveBeforeExit = false;
                         DialogResult = false;
                         e.Cancel = false;
                         break;
@@ -55,20 +67,25 @@ namespace DocumentHelper
                         e.Cancel = true;
                         break;
                 }
-            }
-            else
+            } else if (ExitResult == ExitResults.Saved)
             {
-                if (DataCanceled) { DialogResult = false; }
-                else { DialogResult = true; }
+                DialogResult = true;
+                e.Cancel = false;
+            } else if (ExitResult == ExitResults.Canceled)
+            {
+                DialogResult = false;
                 e.Cancel = false;
             }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            DataCanceled = true;
+            ExitResult = ExitResults.Canceled;
             this.Close();
         }
+
+
+        // 以下函数将修改为命令形式，理论上不应该再次被引用
 
         /// <summary>
         /// 数据校验逻辑暂未完成编写
@@ -85,6 +102,7 @@ namespace DocumentHelper
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void CommitButton_Click(object sender, RoutedEventArgs e)
         {
             List<string> errorData = [];
@@ -95,7 +113,7 @@ namespace DocumentHelper
                 PinBox.Text.ToLower() == ReconfirmedPinBox.Text.ToLower();
             if (!isMatchIdNumber) errorData.Add("身份证号");
 
-            DataSaved = true;
+            ExitResult = ExitResults.Saved;
             this.Close();
             if (false) // 测试暂时关闭数据校验
             {
@@ -106,7 +124,7 @@ namespace DocumentHelper
 
                     )
                 {
-                    DataSaved = true;
+                    ExitResult = ExitResults.Saved;
                     this.Close();
                 }
                 else
@@ -115,6 +133,26 @@ namespace DocumentHelper
                 }
                 
             }
+        }
+
+        private void CommitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (DataChecker())
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+            e.Handled = true;
+            return;
+        }
+
+        private void CommitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ExitResult = ExitResults.Saved;
+            this.Close();
         }
     }
 }
