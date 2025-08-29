@@ -1,12 +1,13 @@
 ﻿<hc:Window x:Class="DocumentHelper.AssistWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DocumentHelper"
-        xmlns:hc="https://handyorg.github.io/handycontrol"
-        mc:Ignorable="d"
-        Title="AssistWindow" Height="450" Width="300" ShowNonClientArea="False">
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:local="clr-namespace:DocumentHelper"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+           mc:Ignorable="d"
+           Title="AssistWindow" Height="450" Width="300" ShowNonClientArea="False">
     <!--窗体比例应偏向竖屏，启动后停靠右上角-->
     <hc:Window.CommandBindings>
         <CommandBinding Command="local:AssistWindow.LastPageCommand" CanExecute="LastPageCommand_CanExecute" Executed="LastPageCommand_Executed" />

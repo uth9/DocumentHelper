@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
         mc:Ignorable="d"
         Title="编辑条目" Height="380" Width="650" Closing="Window_Closing" Icon="/Icon.png">
     <hc:Window.CommandBindings>

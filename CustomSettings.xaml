@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
         xmlns:properties="clr-namespace:DocumentHelper.Properties"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocumentHelper"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
         xmlns:properties="clr-namespace:DocumentHelper.Properties"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
@@ -28,13 +29,14 @@
                 <hc:SimpleStackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="姓名：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:TextBox x:Name="StudentNameBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <TextBox x:Name="StudentNameBox" HorizontalAlignment="Stretch" Width="150" ui:ControlHelper.PlaceholderText="键入姓名"/>
+                        <TextBox ui:ControlHelper.Header="Enter your name:" ui:ControlHelper.PlaceholderText="Name"  Width="100"/>
                     </hc:SimpleStackPanel>
 
 
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="民族：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
-                        <hc:ComboBox x:Name="NationBox" HorizontalAlignment="Stretch" Width="150"/>
+                        <ComboBox x:Name="NationBox" HorizontalAlignment="Stretch" Width="150"/>
                     </hc:SimpleStackPanel>
                 </hc:SimpleStackPanel>
 

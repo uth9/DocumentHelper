@@ -25,61 +25,49 @@ namespace DocumentHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#dce4e5")]
-        public string FirstThemeColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TelRules {
             get {
-                return ((string)(this["FirstThemeColor"]));
+                return ((string)(this["TelRules"]));
             }
             set {
-                this["FirstThemeColor"] = value;
+                this["TelRules"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#5ca4b0")]
-        public string SecondThemeColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PinRules {
             get {
-                return ((string)(this["SecondThemeColor"]));
+                return ((string)(this["PinRules"]));
             }
             set {
-                this["SecondThemeColor"] = value;
+                this["PinRules"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#8ccccc")]
-        public string ThirdThemeColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MemberIdRules {
             get {
-                return ((string)(this["ThirdThemeColor"]));
+                return ((string)(this["MemberIdRules"]));
             }
             set {
-                this["ThirdThemeColor"] = value;
+                this["MemberIdRules"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#354a53")]
-        public string FourthThemeColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MailRules {
             get {
-                return ((string)(this["FourthThemeColor"]));
+                return ((string)(this["MailRules"]));
             }
             set {
-                this["FourthThemeColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#7d8f95")]
-        public string FifthThemeColor {
-            get {
-                return ((string)(this["FifthThemeColor"]));
-            }
-            set {
-                this["FifthThemeColor"] = value;
+                this["MailRules"] = value;
             }
         }
     }
