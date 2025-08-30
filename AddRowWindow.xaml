@@ -30,6 +30,14 @@
                     <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,10,5">
                         <hc:SimpleText Text="姓名：" VerticalAlignment="Center" Width="110" TextAlignment="Right"/>
                         <TextBox x:Name="StudentNameBox" HorizontalAlignment="Stretch" Width="150" ui:ControlHelper.PlaceholderText="键入姓名"/>
+                        <!-- 
+                            BaiYang2238: 补充一下，这里你设置了 ui:ControlHelper.Header ，这会给该 TextBox 添加一个标题，
+                                         正如你上面的 hc:SimpleText 那样。换句话说，你可以通过这个方法，仅需一个控件便可
+                                         做到两个控件实现的效果。
+                                         什么？你问它的输入框去哪了？这是因为它的父控件 hc:SimpleText （设置
+                                         了 Height="40" 的那个）太小了，导致输入框被遮住了，这种情况下要把它的高度值设置
+                                         得大一点，或者直接删去 Height 属性，让它自适应高度。
+                        -->
                         <TextBox ui:ControlHelper.Header="Enter your name:" ui:ControlHelper.PlaceholderText="Name"  Width="100"/>
                     </hc:SimpleStackPanel>
 
